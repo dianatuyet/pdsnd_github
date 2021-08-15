@@ -124,7 +124,7 @@ def time_stats(df):
     # display the most common start hour
     print('Most common start hour: {}'.format(df['Start Time'].dt.hour.mode()[0]))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (round(time.time() - start_time,3)))
     print('-'*40)
 
 
@@ -143,7 +143,7 @@ def station_stats(df):
     # display most frequent combination of start station and end station trip
     print('Most frequent combination of start station and end station for a trip: {}'.format(pd.Series(df['Start Station'] + ' -- ' + df['End Station']).mode()[0]))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (round(time.time() - start_time,3)))
     print('-'*40)
 
 
@@ -159,7 +159,7 @@ def trip_duration_stats(df):
     # display mean travel time
     print('Mean travel time: {} seconds'.format(round(df['Trip Duration'].mean(),1)))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (round(time.time() - start_time,3)))
     print('-'*40)
 
 
@@ -180,7 +180,7 @@ def user_stats(df):
         # Display earliest, most recent, and most common year of birth
         print('\nEarliest birth year: {}\nMost recent birth year: {}\nMost common birth year: {}'.format(int(df['Birth Year'].min()), int(df['Birth Year'].max()), int(df['Birth Year'].mode()[0])))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (round(time.time() - start_time,3)))
     print('-'*40)
 
 def display_raw_data(df):
