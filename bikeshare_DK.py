@@ -126,7 +126,7 @@ def time_stats(df):
     # display the most common start hour
     print('Most common start hour: {}'.format(df['Start Time'].dt.hour.mode()[0]))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (round(time.time() - start_time,3)))
     print('-'*40)
 
 
@@ -145,7 +145,7 @@ def station_stats(df):
     # display most frequent combination of start station and end station trip
     print('Most frequent combination of start station and end station for a trip: {}'.format(pd.Series(df['Start Station'] + ' -- ' + df['End Station']).mode()[0]))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (round(time.time() - start_time,3)))
     print('-'*40)
 
 
@@ -161,7 +161,7 @@ def trip_duration_stats(df):
     # display mean travel time
     print('Mean travel time: {} seconds'.format(round(df['Trip Duration'].mean(),1)))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (round(time.time() - start_time,3)))
     print('-'*40)
 
 
@@ -182,7 +182,7 @@ def user_stats(df):
         # Display earliest, most recent, and most common year of birth
         print('\nEarliest birth year: {}\nMost recent birth year: {}\nMost common birth year: {}'.format(int(df['Birth Year'].min()), int(df['Birth Year'].max()), int(df['Birth Year'].mode()[0])))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (round(time.time() - start_time,3)))
     print('-'*40)
 
 def display_raw_data(df):
@@ -199,12 +199,14 @@ def display_raw_data(df):
         
         # if the index stop variable is greater than or equal to the length, we have less than 5 rows left to print, so print to the end of the df
         elif stop >= len(df):
-            print(df.iloc[start:,:])
+            pd.set_option('display.max_columns',200)
+			print(df.iloc[start:,:])
             print('\nReached the end of the dataset.')
             break
 
         else:
-            print(df.iloc[start:stop,:])
+            pd.set_option('display.max_columns',200)
+			print(df.iloc[start:stop,:])
         
             # ask user whether they would like to see 5 more rows of raw data or not
             restart = input('\nWould you like to see 5 more rows? Enter yes or no.\n').lower()
