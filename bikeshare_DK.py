@@ -197,12 +197,14 @@ def display_raw_data(df):
         
         # if the index stop variable is greater than or equal to the length, we have less than 5 rows left to print, so print to the end of the df
         elif stop >= len(df):
-            print(df.iloc[start:,:])
+            pd.set_option('display.max_columns',200)
+			print(df.iloc[start:,:])
             print('\nReached the end of the dataset.')
             break
 
         else:
-            print(df.iloc[start:stop,:])
+            pd.set_option('display.max_columns',200)
+			print(df.iloc[start:stop,:])
         
             # ask user whether they would like to see 5 more rows of raw data or not
             restart = input('\nWould you like to see 5 more rows? Enter yes or no.\n').lower()
